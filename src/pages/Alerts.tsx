@@ -1,4 +1,5 @@
 import { useNotifications } from '../context/NotificationContext'
+import { useToast } from '../context/ToastContext'
 import AppLayout from '../components/AppLayout'
 import { AlertTriangle, Eye, X, Clock, MapPin, Activity, FileText, Video, User } from 'lucide-react'
 

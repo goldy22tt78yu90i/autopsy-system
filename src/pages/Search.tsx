@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from 'react'
 import AppLayout from '../components/AppLayout'
+import { useToast } from '../context/ToastContext'
 import { Search as SearchIcon, Filter, Clock, Tag, Eye, X, Mic } from 'lucide-react'
 
 interface SearchResult {
@@ -56,6 +57,13 @@ export default function Search() {
   const [activeFilters, setActiveFilters] = useState<string[]>([])
   const [results] = useState<SearchResult[]>(mockResults)
   const [selectedResult, setSelectedResult] = useState<SearchResult | null>(null)
+  const [debouncedQuery, setDebouncedQuery] = useState('')
+
+  // Debounce search query
+  useEffect(() => {
+    const timer = setTimeout(() => setDebouncedQuery(query), 300)
+    return () => clearTimeout(timer)
+  }, [query])
 
   // Voice search state
   const [isListening, setIsListening] = useState(false)
@@ -144,8 +152,8 @@ export default function Search() {
 
   // Filter results based on query and active filters
   const filteredResults = results.filter(result => {
-    if (!query.trim()) return true
-    const queryLower = query.toLowerCase()
+    if (!debouncedQuery.trim()) return true
+    const queryLower = debouncedQuery.toLowerCase()
     return (
       result.objectLabel.toLowerCase().includes(queryLower) ||
       result.description.toLowerCase().includes(queryLower) ||
