@@ -176,15 +176,15 @@ export default function Search() {
               </div>
             </div>
 
+            {/* Search Input - No Icon */}
             <div className="relative">
-              <SearchIcon className="absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-muted" size={20} />
               <input
                 type="text"
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 onKeyDown={(e) => e.key === 'Enter' && query.trim()}
                 placeholder="Search events, objects, or activities..."
-                className="input-primary pl-12 pr-24 text-lg"
+                className="input-primary pr-32 text-lg"
               />
               <div className="absolute right-4 top-1/2 -translate-y-1/2 flex items-center gap-2">
                 {isListening && (

@@ -2,7 +2,7 @@
 
 ## Overview
 
-The AI Chatbot feature has been successfully integrated into the OmniVision React application. It provides an intelligent assistant that helps users filter and summarize incident data based on natural language queries.
+The AI Chatbot feature has been successfully integrated into the iCamAutopsy React application. It provides an intelligent assistant that helps users filter and summarize incident data based on natural language queries.
 
 ## Features
 
@@ -284,4 +284,4 @@ No new dependencies added! Uses existing:
 
 ## License
 
-Part of OmniVision AI security system.
+Part of iCamAutopsy security system.

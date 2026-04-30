@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
-import {
-  Shield, Zap, Eye, Globe, Terminal, Menu, X,
+import { Shield, Zap, Eye, Globe, Menu, X,
   Fingerprint, BarChart3, Lock, Database, Users, Server,
   ChevronRight
 } from 'lucide-react'
@@ -45,7 +44,7 @@ export default function LandingPage() {
       <nav className={`fixed top-0 w-full z-50 border-b border-outline-variant transition-all duration-300 ${scrolled ? 'bg-surface/90 backdrop-blur-md shadow-lg' : 'bg-transparent'}`}>
         <div className="flex justify-between items-center h-20 px-8 w-full max-w-screen-2xl mx-auto">
           <Link to="/" className="text-2xl font-bold tracking-tighter text-primary-light drop-shadow-[0_0_10px_rgba(59,130,246,0.5)] font-display">
-            OmniVision AI
+            iCamAutopsy
           </Link>
           <div className="hidden md:flex items-center gap-8">
             {navItems.map((item, i) => (
@@ -117,7 +116,7 @@ export default function LandingPage() {
               AI-Powered Security for the <span className="text-gradient">Modern World.</span>
             </h1>
             <p className="font-body-lg text-on-surface-muted max-w-lg">
-              The next evolution of institutional vigilance. OmniVision AI integrates neural behavioral mapping with instant protocol deployment to secure what matters most.
+              The next evolution of institutional vigilance. iCamAutopsy integrates neural behavioral mapping with instant protocol deployment to secure what matters most.
             </p>
             <div className="flex flex-wrap gap-4 pt-4">
               <Link to="/signup" className="bg-primary text-white px-10 py-4 font-label-caps uppercase text-sm tracking-widest font-bold hover:bg-primary-light hover:shadow-[0_0_20px_rgba(59,130,246,0.3)] transition-all duration-300 rounded-lg">
@@ -245,7 +244,7 @@ export default function LandingPage() {
             <div>
               <h3 className="font-headline-md text-on-background mb-3">Data Collection & Use</h3>
               <p className="text-on-surface-muted font-body-md leading-relaxed">
-                OmniVision AI collects only the minimum data necessary to provide security services. This includes video feeds, detection metadata, user credentials, and system logs. Data is processed locally when possible and never sold to third parties.
+                iCamAutopsy collects only the minimum data necessary to provide security services. This includes video feeds, detection metadata, user credentials, and system logs. Data is processed locally when possible and never sold to third parties.
               </p>
             </div>
             <div className="h-px bg-outline-variant"></div>
@@ -287,12 +286,12 @@ export default function LandingPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {[
               {
-                q: 'How does OmniVision AI detect threats?',
+                q: 'How does iCamAutopsy detect threats?',
                 a: 'Our neural networks analyze video feeds in real-time, identifying people, vehicles, and objects. Advanced behavioral analysis predicts suspicious activity before incidents occur, with configurable confidence thresholds.'
               },
               {
                 q: 'What video formats are supported?',
-                a: 'OmniVision AI supports all major video formats including MP4, AVI, MOV, and MKV. Streams from RTSP, RTMP, and HLS protocols are also supported for live feed integration.'
+                a: 'iCamAutopsy supports all major video formats including MP4, AVI, MOV, and MKV. Streams from RTSP, RTMP, and HLS protocols are also supported for live feed integration.'
               },
               {
                 q: 'How is my data kept secure?',
@@ -300,11 +299,11 @@ export default function LandingPage() {
               },
               {
                 q: 'Can I integrate with existing systems?',
-                a: 'Yes, OmniVision AI provides REST APIs and webhooks for seamless integration with law enforcement databases, emergency dispatch systems, and third-party security platforms.'
+                a: 'Yes, iCamAutopsy provides REST APIs and webhooks for seamless integration with law enforcement databases, emergency dispatch systems, and third-party security platforms.'
               },
               {
                 q: 'What are the system requirements?',
-                a: 'OmniVision AI runs on standard x86 servers with NVIDIA GPU acceleration recommended. Minimum 16GB RAM, 4-core CPU, and 500GB storage per 10 camera nodes. Cloud deployment options are also available.'
+                a: 'iCamAutopsy runs on standard x86 servers with NVIDIA GPU acceleration recommended. Minimum 16GB RAM, 4-core CPU, and 500GB storage per 10 camera nodes. Cloud deployment options are also available.'
               },
               {
                 q: 'How do I get started?',
@@ -385,7 +384,7 @@ export default function LandingPage() {
             <div className="relative z-10 text-center space-y-8">
               <h2 className="font-display text-5xl font-bold text-on-background">Secure Your Assets</h2>
               <p className="text-on-surface-muted font-body-lg max-w-2xl mx-auto">
-                Join the elite organizations worldwide that trust OmniVision AI for their institutional vigilance and operational continuity.
+                Join the elite organizations worldwide that trust iCamAutopsy for their institutional vigilance and operational continuity.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link to="/signup" className="bg-primary text-white px-12 py-5 rounded-lg font-label-caps text-sm tracking-[0.2em] font-bold hover:bg-primary-light hover:shadow-[0_0_20px_rgba(59,130,246,0.3)] transition-all duration-300">
@@ -404,30 +403,6 @@ export default function LandingPage() {
 
       {/* Footer */}
       <footer className="w-full border-t border-outline-variant py-12 bg-surface">
-        <div className="max-w-7xl mx-auto px-8 flex flex-col md:flex-row justify-between items-center gap-8">
-          <div className="flex flex-col items-center md:items-start gap-4">
-            <div className="font-bold text-primary-light font-display text-2xl">
-              OmniVision AI
-            </div>
-            <p className="font-display text-[12px] uppercase tracking-wider text-on-surface-muted">
-              &copy; 2026 OmniVision AI. All systems operational.
-            </p>
-          </div>
-          <div className="flex flex-wrap justify-center gap-8">
-            <a href="#privacy" className="font-display text-[12px] uppercase tracking-wider text-on-surface-muted hover:text-primary-light transition-colors">Privacy Policy</a>
-            <a href="#docs" className="font-display text-[12px] uppercase tracking-wider text-on-surface-muted hover:text-primary-light transition-colors">Documentation & FAQ</a>
-            <a href="#security" className="font-display text-[12px] uppercase tracking-wider text-on-surface-muted hover:text-primary-light transition-colors">Security Compliance</a>
-            <a href="#oversight" className="font-display text-[12px] uppercase tracking-wider text-on-surface-muted hover:text-primary-light transition-colors">System Status</a>
-          </div>
-          <div className="flex gap-4">
-            <button className="w-10 h-10 rounded-full border border-outline-variant flex items-center justify-center hover:text-primary-light hover:border-primary-light transition-all">
-              <Globe size={18} />
-            </button>
-            <button className="w-10 h-10 rounded-full border border-outline-variant flex items-center justify-center hover:text-primary-light hover:border-primary-light transition-all">
-              <Terminal size={18} />
-            </button>
-          </div>
-        </div>
       </footer>
     </div>
   )

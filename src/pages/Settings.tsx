@@ -25,17 +25,16 @@ export default function Settings() {
   const [activeTab, setActiveTab] = useState<SettingsTab>('profile')
   const [profile, setProfile] = useState<UserProfile>({
     name: 'Emmanuella Dodoo',
-    email: 'e.dodoo@omnivision.ai',
+    email: 'e.dodoo@icamautopsy.ai',
     role: 'admin',
     avatar: 'https://media.licdn.com/dms/image/v2/D4D03AQE9C6iPZGMERg/profile-displayphoto-shrink_200_200/0/1721994229830?e=2147483647&v=beta&t=coFox-96DpMrrGeDHF0IbqSwhBTIV0AKyvrQwE-TSOA',
-    sessionId: 'OV-7724.88',
+    sessionId: 'IC-7724.88',
     nodeId: 'HQ_CENTRAL_01'
   })
   const [showPassword, setShowPassword] = useState(false)
   const [newPassword, setNewPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
 
-  // Security
   const [biometricLock, setBiometricLock] = useState(true)
   const [twoFactor, setTwoFactor] = useState(true)
   const [permissions, setPermissions] = useState({
@@ -44,7 +43,6 @@ export default function Settings() {
     manageCases: true,
   })
 
-  // AI Detection
   const [detectionTypes, setDetectionTypes] = useState({
     people: true,
     vehicles: true,
@@ -54,13 +52,11 @@ export default function Settings() {
   const [loiteringDuration, setLoiteringDuration] = useState(5)
   const [motionSensitivity, setMotionSensitivity] = useState(70)
 
-  // Search
   const [defaultTimeRange, setDefaultTimeRange] = useState('24h')
   const [defaultObjectType, setDefaultObjectType] = useState('all')
   const [searchMode, setSearchMode] = useState<'exact' | 'fuzzy'>('fuzzy')
   const [resultLimit, setResultLimit] = useState(50)
 
-  // Alerts
   const [alertRules] = useState([
     { id: '1', name: 'Intruder Detection', severity: 'high' as const, channels: { inApp: true, email: true } },
     { id: '2', name: 'Unauthorized Vehicle', severity: 'medium' as const, channels: { inApp: true, email: false } },
@@ -69,29 +65,24 @@ export default function Settings() {
   const [newRuleName, setNewRuleName] = useState('')
   const [newRuleSeverity, setNewRuleSeverity] = useState<'low' | 'medium' | 'high'>('medium')
 
-  // Voice
   const [voiceEnabled, setVoiceEnabled] = useState(false)
   const [voiceLanguage, setVoiceLanguage] = useState('en-US')
   const [micPermission, setMicPermission] = useState(true)
   const [commandSensitivity, setCommandSensitivity] = useState(75)
 
-  // Cases
   const [defaultCaseSettings, setDefaultCaseSettings] = useState({
     autoSave: true,
     exportVideo: true,
     exportReports: true,
   })
 
-  // Storage
   const [retentionPeriod, setRetentionPeriod] = useState(30)
   const [archiveAfter, setArchiveAfter] = useState(7)
   const [storageUsed] = useState({ used: 742, total: 1024 })
 
-  // Appearance
   const { theme, toggleTheme } = useTheme()
   const [uiDensity, setUiDensity] = useState<'comfortable' | 'compact'>('comfortable')
 
-  // Integrations
   const [apiKeys] = useState({
     vision: 'sk-****-****-****-xK9p',
     analytics: 'ak-****-****-****-mQ3r',
@@ -113,7 +104,7 @@ export default function Settings() {
 
   return (
     <AppLayout>
-      <main className="max-w-6xl mx-auto p-6 space-y-6">
+      <main className="max-w-6xl mx-auto p-4 sm:p-6 space-y-6">
         {/* Header */}
         <div className="flex items-center gap-4">
           <div className="p-2 bg-primary/20 rounded-lg">
@@ -121,7 +112,7 @@ export default function Settings() {
           </div>
           <div>
             <h2 className="font-headline-lg text-on-background">System Settings</h2>
-            <p className="text-sm text-on-surface-muted">Configure your OmniVision AI experience</p>
+            <p className="text-sm text-on-surface-muted">Configure your iCamAutopsy experience</p>
           </div>
         </div>
 
@@ -148,13 +139,14 @@ export default function Settings() {
 
           {/* Main Content */}
           <div className="flex-1 space-y-6 min-w-0">
+
             {/* Profile Section */}
             {activeTab === 'profile' && (
               <div className="space-y-6">
                 <SectionHeader icon={<User size={20} />} title="Profile" description="Manage your account information" />
                 <div className="glass-card rounded-xl p-6 space-y-6">
-                  <div className="flex items-center gap-6">
-                    <div className="relative">
+                  <div className="flex flex-col sm:flex-row items-start gap-6">
+                    <div className="relative self-center sm:self-start">
                       <div className="w-24 h-24 rounded-full border-2 border-primary-light p-1">
                         <img alt="Profile" className="w-full h-full rounded-full object-cover" src={profile.avatar} />
                       </div>
@@ -162,14 +154,14 @@ export default function Settings() {
                         <Check size={14} />
                       </div>
                     </div>
-                    <div className="flex-1">
+                    <div className="flex-1 text-center sm:text-left">
                       <h3 className="font-headline-md text-on-background">{profile.name}</h3>
                       <p className="text-sm text-on-surface-muted">{profile.email}</p>
                       <span className="inline-block mt-2 px-3 py-1 bg-primary/20 text-primary-light rounded-full text-xs font-medium uppercase">
                         {profile.role}
                       </span>
                     </div>
-                    <button className="btn-secondary text-sm py-2 px-4">
+                    <button className="btn-secondary text-sm py-2 px-4 self-center sm:self-start">
                       <Upload size={14} /> Change Photo
                     </button>
                   </div>
@@ -230,7 +222,7 @@ export default function Settings() {
                     </div>
                   </div>
 
-                  <div className="flex justify-end gap-3 border-t border-outline-variant pt-6">
+                  <div className="flex flex-col sm:flex-row justify-end gap-3 border-t border-outline-variant pt-6">
                     <button className="btn-secondary text-sm py-2 px-6">Cancel</button>
                     <button className="btn-primary text-sm py-2 px-6">
                       <Save size={14} /> Save Changes
@@ -238,7 +230,7 @@ export default function Settings() {
                   </div>
                 </div>
 
-                {/* Session / Device Management */}
+                {/* Active Sessions */}
                 <div className="glass-card rounded-xl p-6 space-y-4">
                   <h4 className="font-label-bold text-on-background">Active Sessions</h4>
                   <div className="space-y-3">
@@ -246,7 +238,7 @@ export default function Settings() {
                       { device: 'Chrome - Windows 11', location: 'HQ Central', time: 'Active Now', current: true },
                       { device: 'Mobile App - iOS', location: 'HQ Central', time: '2 hours ago', current: false },
                     ].map((session, i) => (
-                      <div key={i} className="flex items-center justify-between p-3 bg-surface-container rounded-lg">
+                      <div key={i} className="flex flex-col sm:flex-row sm:items-center justify-between p-3 bg-surface-container rounded-lg gap-3">
                         <div className="flex items-center gap-3">
                           <div className={`w-2 h-2 rounded-full ${session.current ? 'bg-green-400' : 'bg-on-surface-muted'}`}></div>
                           <div>
@@ -255,9 +247,9 @@ export default function Settings() {
                           </div>
                         </div>
                         {session.current ? (
-                          <span className="text-xs text-primary-light">Current</span>
+                          <span className="text-xs text-primary-light self-start sm:self-center">Current</span>
                         ) : (
-                          <button className="text-xs text-error hover:underline">Revoke</button>
+                          <button className="text-xs text-error hover:underline self-start sm:self-center">Revoke</button>
                         )}
                       </div>
                     ))}
@@ -271,7 +263,7 @@ export default function Settings() {
               <div className="space-y-6">
                 <SectionHeader icon={<Shield size={20} />} title="Security" description="Manage access control and permissions" />
                 <div className="glass-card rounded-xl divide-y divide-outline-variant">
-                  <div className="p-4 flex items-center justify-between">
+                  <div className="p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                     <div className="flex items-center gap-4">
                       <Fingerprint className="text-primary-light" size={20} />
                       <div>
@@ -282,7 +274,7 @@ export default function Settings() {
                     <select
                       value={profile.role}
                       onChange={(e) => setProfile({...profile, role: e.target.value as UserProfile['role']})}
-                      className="input-primary py-2 px-3 text-sm w-40"
+                      className="input-primary py-2 px-3 text-sm w-full sm:w-40"
                     >
                       <option value="admin">Admin</option>
                       <option value="investigator">Investigator</option>
@@ -312,7 +304,7 @@ export default function Settings() {
                     </div>
                   </div>
 
-                  <div className="p-4 flex items-center justify-between">
+                  <div className="p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                     <div className="flex items-center gap-4">
                       <Fingerprint className="text-primary-light" size={20} />
                       <div>
@@ -323,7 +315,7 @@ export default function Settings() {
                     <ToggleSwitch value={biometricLock} onChange={setBiometricLock} />
                   </div>
 
-                  <div className="p-4 flex items-center justify-between">
+                  <div className="p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                     <div className="flex items-center gap-4">
                       <Shield className="text-primary-light" size={20} />
                       <div>
@@ -464,7 +456,7 @@ export default function Settings() {
                         <select
                           value={defaultTimeRange}
                           onChange={(e) => setDefaultTimeRange(e.target.value)}
-                          className="input-primary py-2 px-3 text-sm"
+                          className="input-primary py-2 px-3 text-sm w-full"
                         >
                           <option value="1h">Last 1 Hour</option>
                           <option value="24h">Last 24 Hours</option>
@@ -477,7 +469,7 @@ export default function Settings() {
                         <select
                           value={defaultObjectType}
                           onChange={(e) => setDefaultObjectType(e.target.value)}
-                          className="input-primary py-2 px-3 text-sm"
+                          className="input-primary py-2 px-3 text-sm w-full"
                         >
                           <option value="all">All Types</option>
                           <option value="person">Person</option>
@@ -490,7 +482,7 @@ export default function Settings() {
 
                   <div className="border-t border-outline-variant pt-6">
                     <p className="font-label-bold text-on-background mb-4">Search Mode</p>
-                    <div className="flex gap-3">
+                    <div className="flex flex-wrap gap-3">
                       {['exact', 'fuzzy'].map((mode) => (
                         <button
                           key={mode}
@@ -519,7 +511,7 @@ export default function Settings() {
                         onChange={(e) => setResultLimit(parseInt(e.target.value))}
                         min="10"
                         max="500"
-                        className="input-primary w-32"
+                        className="input-primary w-full sm:w-32"
                       />
                       <p className="text-xs text-on-surface-muted">Maximum number of search results to display</p>
                     </div>
@@ -561,7 +553,7 @@ export default function Settings() {
                               <Trash2 size={16} />
                             </button>
                           </div>
-                          <div className="flex gap-4 text-xs">
+                          <div className="flex flex-wrap gap-4 text-xs">
                             <label className="flex items-center gap-2 text-on-surface-muted">
                               <input
                                 type="checkbox"
@@ -601,7 +593,7 @@ export default function Settings() {
                       </div>
                       <div className="space-y-2">
                         <label className="text-sm font-medium text-on-surface-muted uppercase tracking-wider">Severity Level</label>
-                        <div className="flex gap-3">
+                        <div className="flex flex-wrap gap-3">
                           {(['low', 'medium', 'high'] as const).map((sev) => (
                             <button
                               key={sev}
@@ -631,9 +623,9 @@ export default function Settings() {
             {/* Voice Section */}
             {activeTab === 'voice' && (
               <div className="space-y-6">
-                <SectionHeader icon={<Mic size={20} />} title="OmniVoice" description="Configure voice control settings" />
+                <SectionHeader icon={<Mic size={20} />} title="iCamVoice" description="Configure voice control settings" />
                 <div className="glass-card rounded-xl divide-y divide-outline-variant">
-                  <div className="p-4 flex items-center justify-between">
+                  <div className="p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                     <div className="flex items-center gap-4">
                       <Mic className="text-primary-light" size={20} />
                       <div>
@@ -660,7 +652,7 @@ export default function Settings() {
                         </select>
                       </div>
 
-                      <div className="p-4 flex items-center justify-between">
+                      <div className="p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                         <div className="flex items-center gap-4">
                           <Mic className="text-primary-light" size={20} />
                           <div>
@@ -815,7 +807,7 @@ export default function Settings() {
               <div className="space-y-6">
                 <SectionHeader icon={<Palette size={20} />} title="Appearance" description="Customize the look and feel" />
                 <div className="glass-card rounded-xl divide-y divide-outline-variant">
-                  <div className="p-4 flex items-center justify-between">
+                  <div className="p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                     <div className="flex items-center gap-4">
                       <div className={`w-8 h-8 rounded-lg flex items-center justify-center ${
                         theme === 'dark' ? 'bg-slate-900' : 'bg-white border border-slate-200'
@@ -834,7 +826,7 @@ export default function Settings() {
 
                   <div className="p-4 space-y-2">
                     <label className="text-sm font-medium text-on-surface-muted uppercase tracking-wider">UI Density</label>
-                    <div className="flex gap-3">
+                    <div className="flex flex-wrap gap-3">
                       {(['comfortable', 'compact'] as const).map((density) => (
                         <button
                           key={density}
@@ -888,7 +880,7 @@ export default function Settings() {
                         { key: 'analytics', label: 'Analytics API', value: apiKeys.analytics },
                       ].map((api) => (
                         <div key={api.key} className="p-3 bg-surface-container rounded-lg">
-                          <div className="flex items-center justify-between mb-2">
+                          <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-2 gap-2">
                             <p className="text-sm font-medium text-on-background">{api.label}</p>
                             <button className="text-xs text-primary-light hover:underline">Regenerate</button>
                           </div>
@@ -910,7 +902,7 @@ export default function Settings() {
 
                   <div className="border-t border-outline-variant pt-6">
                     <p className="font-label-bold text-on-background mb-4">Webhook URL</p>
-                    <div className="flex gap-2">
+                    <div className="flex flex-col sm:flex-row gap-2">
                       <input
                         type="url"
                         value={webhookUrl}
@@ -1000,5 +992,3 @@ function ToggleSwitch({ value, onChange }: { value: boolean; onChange: (val: boo
     </button>
   )
 }
-
-

@@ -48,13 +48,8 @@ export default function SignUp() {
           <div className="w-8 h-8 rounded-lg bg-primary/20 flex items-center justify-center">
             <Zap className="w-5 h-5 text-primary-light" />
           </div>
-          <h1 className="font-display tracking-widest font-bold uppercase text-primary-light group-hover:text-primary-light/80 transition-colors">OmniVision AI</h1>
+          <h1 className="font-display tracking-widest font-bold uppercase text-primary-light group-hover:text-primary-light/80 transition-colors">iCamAutopsy</h1>
         </Link>
-        <div className="hidden md:flex gap-8">
-          <span className="text-label-sm text-on-surface-muted hover:text-primary-light transition-colors cursor-pointer">Platform</span>
-          <span className="text-label-sm text-on-surface-muted hover:text-primary-light transition-colors cursor-pointer">Security</span>
-          <span className="text-label-sm text-on-surface-muted hover:text-primary-light transition-colors cursor-pointer">Documentation</span>
-        </div>
       </header>
 
       {/* Main Content */}
@@ -66,7 +61,7 @@ export default function SignUp() {
               <Zap className="w-8 h-8 text-primary-light" />
             </div>
             <h2 className="font-headline-lg text-4xl font-bold text-on-background">Create Account</h2>
-            <p className="text-body-md text-on-surface-muted">Join OmniVision AI today</p>
+            <p className="text-body-md text-on-surface-muted">Join iCamAutopsy today</p>
           </div>
 
           {/* Signup Card */}
@@ -85,7 +80,7 @@ export default function SignUp() {
                   <input
                     className="input-primary pl-12"
                     id="email"
-                    placeholder="agent@omnivision.ai"
+                    placeholder="agent@icamautopsy.ai"
                     type="email"
                     value={formData.email}
                     onChange={handleChange}
