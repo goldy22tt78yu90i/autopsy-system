@@ -31,9 +31,24 @@ export default function Settings() {
     sessionId: 'IC-7724.88',
     nodeId: 'HQ_CENTRAL_01'
   })
-  const [showPassword, setShowPassword] = useState(false)
-  const [newPassword, setNewPassword] = useState('')
-  const [confirmPassword, setConfirmPassword] = useState('')
+  const [saveSuccess, setSaveSuccess] = useState(false)
+  const [saveError, setSaveError] = useState('')
+
+  const handleSave = () => {
+    setSaveError('')
+    // Validate passwords match
+    if (newPassword && newPassword !== confirmPassword) {
+      setSaveError('Passwords do not match')
+      return
+    }
+    if (newPassword && newPassword.length < 6) {
+      setSaveError('Password must be at least 6 characters')
+      return
+    }
+    // Simulate save
+    setSaveSuccess(true)
+    setTimeout(() => setSaveSuccess(false), 3000)
+  }
 
   const [biometricLock, setBiometricLock] = useState(true)
   const [twoFactor, setTwoFactor] = useState(true)
@@ -222,9 +237,20 @@ export default function Settings() {
                     </div>
                   </div>
 
+                  {saveSuccess && (
+                    <div className="mb-4 p-3 bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg">
+                      <p className="text-sm text-green-700 dark:text-green-400">Settings saved successfully!</p>
+                    </div>
+                  )}
+                  {saveError && (
+                    <div className="mb-4 p-3 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg">
+                      <p className="text-sm text-red-700 dark:text-red-400">{saveError}</p>
+                    </div>
+                  )}
+
                   <div className="flex flex-col sm:flex-row justify-end gap-3 border-t border-outline-variant pt-6">
                     <button className="btn-secondary text-sm py-2 px-6">Cancel</button>
-                    <button className="btn-primary text-sm py-2 px-6">
+                    <button onClick={handleSave} className="btn-primary text-sm py-2 px-6">
                       <Save size={14} /> Save Changes
                     </button>
                   </div>

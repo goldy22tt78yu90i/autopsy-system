@@ -258,8 +258,9 @@ export default function Search() {
             </h3>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filteredResults.map((result) => (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {filteredResults.length > 0 ? (
+            filteredResults.map((result) => (
               <div key={result.id} className="glass-card rounded-xl overflow-hidden group cursor-pointer" onClick={() => setSelectedResult(result)}>
                 <div className="relative aspect-video overflow-hidden bg-surface-container-highest">
                   <img
@@ -300,8 +301,14 @@ export default function Search() {
                   </button>
                 </div>
               </div>
-            ))}
-          </div>
+            ))
+          ) : (
+            <div className="col-span-full text-center py-12">
+              <p className="text-on-surface-muted text-lg">No results found</p>
+              <p className="text-sm text-on-surface-muted mt-2">Try adjusting your search query or filters</p>
+            </div>
+          )}
+        </div>
         </div>
 
         {/* Selected Result Modal */}
