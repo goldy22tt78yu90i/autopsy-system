@@ -11,7 +11,7 @@ interface ToastContextType {
   showToast: (message: string, type?: 'info' | 'success' | 'error') => void
 }
 
-const ToastContext = createContext<ToastContextType | undefined>(undefined))
+const ToastContext = createContext<ToastContextType | undefined>(undefined)
 
 export function ToastProvider({ children }: { children: React.ReactNode }) {
   const [toasts, setToasts] = useState<Toast[]>([])

@@ -34,6 +34,10 @@ export default function Settings() {
   const [saveSuccess, setSaveSuccess] = useState(false)
   const [saveError, setSaveError] = useState('')
 
+  const [newPassword, setNewPassword] = useState('')
+  const [confirmPassword, setConfirmPassword] = useState('')
+  const [showPassword, setShowPassword] = useState(false)
+
   const handleSave = () => {
     setSaveError('')
     // Validate passwords match

@@ -9,13 +9,67 @@ import { useTheme } from '../context/ThemeContext'
 import { useNotifications } from '../context/NotificationContext'
 
 const navItems = [
-  { label: 'Dashboard', path: '/dashboard', icon: LayoutDashboard },
-  { label: 'Search', path: '/search', icon: Search },
-  { label: 'Events', path: '/events', icon: History },
-  { label: 'Analysis', path: '/analysis', icon: Film },
-  { label: 'Alerts', path: '/alerts', icon: AlertTriangle },
-  { label: 'AI Insights', path: '/ai-insights', icon: Brain },
-  { label: 'Settings', path: '/settings', icon: Settings },
+  {
+    label: 'Dashboard',
+    path: '/dashboard',
+    icon: LayoutDashboard,
+    subMenu: []
+  },
+  {
+    label: 'Search',
+    path: '/search',
+    icon: Search,
+    subMenu: [
+      { label: 'Advanced Search', path: '/search?mode=advanced' },
+      { label: 'Saved Searches', path: '/search?saved=true' },
+    ]
+  },
+  {
+    label: 'Events',
+    path: '/events',
+    icon: History,
+    subMenu: [
+      { label: 'Live Feed', path: '/events?filter=live' },
+      { label: 'Recorded', path: '/events?filter=recorded' },
+    ]
+  },
+  {
+    label: 'Analysis',
+    path: '/analysis',
+    icon: Film,
+    subMenu: [
+      { label: 'Video Analysis', path: '/analysis/video' },
+      { label: 'Behavioral', path: '/analysis/behavior' },
+    ]
+  },
+  {
+    label: 'Alerts',
+    path: '/alerts',
+    icon: AlertTriangle,
+    subMenu: [
+      { label: 'Critical', path: '/alerts?severity=high' },
+      { label: 'Warnings', path: '/alerts?severity=medium' },
+    ]
+  },
+  {
+    label: 'AI Insights',
+    path: '/ai-insights',
+    icon: Brain,
+    subMenu: [
+      { label: 'ChatBot', path: '/ai-insights?tab=chat' },
+      { label: 'Reports', path: '/ai-insights?tab=reports' },
+    ]
+  },
+  {
+    label: 'Settings',
+    path: '/settings',
+    icon: Settings,
+    subMenu: [
+      { label: 'Profile', path: '/settings', tab: 'profile' },
+      { label: 'Security', path: '/settings', tab: 'security' },
+      { label: 'AI Detection', path: '/settings', tab: 'ai-detection' },
+    ]
+  },
 ]
 
 const userData = {

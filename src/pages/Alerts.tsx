@@ -5,8 +5,14 @@ import { AlertTriangle, Eye, X, Clock, MapPin, Activity, FileText, Video, User }
 
 export default function Alerts() {
   const { notifications, dismissNotification, markAsRead } = useNotifications()
+  const { showToast } = useToast()
 
   const activeAlerts = notifications.filter(n => !n.dismissed)
+
+  const handleViewLive = (alert: typeof notifications[0]) => {
+    markAsRead(alert.id)
+    showToast(`Viewing live feed for ${alert.title}`, 'info')
+  }
 
   const timelineItems = [
     {
@@ -108,14 +114,14 @@ export default function Alerts() {
                 <h3 className="font-headline-md text-on-background mb-2">{alert.title}</h3>
                 <p className="text-sm text-on-surface-muted mb-6">{alert.description}</p>
 
-                <div className="flex gap-3">
-                  <button
-                    onClick={() => markAsRead(alert.id)}
-                    className="flex-1 btn-primary text-[10px] py-2"
-                  >
-                    <Eye size={12} />
-                    View Live
-                  </button>
+                  <div className="flex gap-3">
+                    <button
+                      onClick={() => handleViewLive(alert)}
+                      className="flex-1 btn-primary text-[10px] py-2"
+                    >
+                      <Eye size={12} />
+                      View Live
+                    </button>
                   <button
                     onClick={() => dismissNotification(alert.id)}
                     className="flex-1 btn-secondary text-[10px] py-2"

@@ -161,6 +161,13 @@ export default function Search() {
     )
   })
 
+  const { showToast } = useToast()
+
+  const handleViewClip = (result: SearchResult) => {
+    setSelectedResult(result)
+    showToast(`Opened clip from ${result.camera} at ${result.timestamp}`, 'info')
+  }
+
   return (
     <AppLayout>
       <div className="space-y-8">
@@ -303,7 +310,7 @@ export default function Search() {
                     <span className="text-sm font-medium text-primary-light">{result.objectLabel}</span>
                   </div>
                   <p className="text-sm text-on-surface-muted mb-3">{result.description}</p>
-                  <button className="btn-secondary w-full justify-center text-sm py-2">
+                  <button onClick={() => handleViewClip(result)} className="btn-secondary w-full justify-center text-sm py-2">
                     <Eye size={14} />
                     View Clip
                   </button>
@@ -355,7 +362,7 @@ export default function Search() {
                       </span>
                     </div>
                   </div>
-                  <button className="btn-primary w-full justify-center mt-4">
+                  <button onClick={() => showToast(`Viewing clip at timestamp ${selectedResult.timestamp}`, 'info')} className="btn-primary w-full justify-center mt-4">
                     View at Timestamp
                   </button>
                 </div>
