@@ -193,7 +193,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
             {/* Dropdown Menu - Solid Professional Style */}
             <div
               ref={dropdownRef}
-              className={`absolute right-0 top-11 w-72 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl shadow-xl z-50 transition-all duration-150 ${
+              className={`absolute right-0 top-16 w-72 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl shadow-xl z-50 transition-all duration-150 ${
                 avatarOpen ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 -translate-y-1 pointer-events-none'
               }`}
             >
