@@ -118,7 +118,7 @@ export default function SignIn() {
                   Email
                 </label>
                 <div className="relative">
-                  <Mail aria-hidden className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5 pointer-events-none" />
+                  <Mail aria-hidden focusable={false} tabIndex={-1} className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5 pointer-events-none" />
                   <input
                     id="email"
                     type="email"
@@ -148,7 +148,7 @@ export default function SignIn() {
                   </a>
                 </div>
                 <div className="relative">
-                  <Lock aria-hidden className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5 pointer-events-none" />
+                  <Lock aria-hidden focusable={false} tabIndex={-1} className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5 pointer-events-none" />
                   <input
                     id="password"
                     type={showPassword ? 'text' : 'password'}

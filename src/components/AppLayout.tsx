@@ -392,7 +392,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
       </nav>
 
       {/* Footer */}
-      <footer className={`w-full flex flex-col items-center gap-4 py-12 opacity-80 bg-surface/80 backdrop-blur-xl border-t border-outline-variant transition-all duration-300 ${sidebarOpen ? 'md:ml-64' : 'md:ml-20'}`}>
+      <footer className={`w-full flex flex-col items-center gap-4 py-12 opacity-80 bg-surface/80 backdrop-blur-xl border-t border-outline-variant transition-all duration-300`}>
       </footer>
 
       {/* Profile Modal - Solid Professional Style */}

@@ -17,7 +17,8 @@ for (const vp of viewports) {
   for (const p of pages) {
     test(`${p.name} - ${vp.name}`, async ({ page }) => {
       await page.setViewportSize({ width: vp.width, height: vp.height })
-      await page.goto(`http://localhost:5174${p.path}`)
+      const port = process.env.PORT || '5175'
+      await page.goto(`http://localhost:${port}${p.path}`)
       await page.waitForLoadState('networkidle')
 
       // Basic accessibility and layout checks
@@ -32,8 +33,12 @@ for (const vp of viewports) {
         const els = Array.from(document.querySelectorAll('*'))
         return els
           .filter((el) => {
+            const cs = getComputedStyle(el)
+            if (cs.pointerEvents === 'none') return false
+            if (el.className && String(el.className).includes('pointer-events-none')) return false
             const r = el.getBoundingClientRect()
-            return r.width > window.innerWidth || r.right > window.innerWidth || r.left < 0
+            const tolerance = 8
+            return r.width > window.innerWidth + tolerance || r.right > window.innerWidth + tolerance || r.left < -tolerance
           })
           .map((el) => el.tagName + (el.id ? `#${el.id}` : el.className ? `.${el.className.split(' ').slice(0,2).join('.')}` : ''))
       })

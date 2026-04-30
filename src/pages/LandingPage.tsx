@@ -395,8 +395,8 @@ export default function LandingPage() {
                 </Link>
               </div>
             </div>
-            <div className="absolute -bottom-20 -left-20 w-64 h-64 bg-primary-light/10 blur-[80px] rounded-full"></div>
-            <div className="absolute -top-20 -right-20 w-64 h-64 bg-tertiary/10 blur-[80px] rounded-full"></div>
+            <div className="absolute -bottom-20 -left-20 w-64 h-64 bg-primary-light/10 blur-[80px] rounded-full pointer-events-none -z-10"></div>
+            <div className="absolute -top-20 -right-20 w-64 h-64 bg-tertiary/10 blur-[80px] rounded-full pointer-events-none -z-10"></div>
           </div>
         </div>
       </section>

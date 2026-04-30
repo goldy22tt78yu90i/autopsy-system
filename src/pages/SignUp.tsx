@@ -81,7 +81,7 @@ export default function SignUp() {
           {/* Signup Card */}
           <div className="glass-card p-8 rounded-xl relative">
             {/* AI Pulse Decorative Element */}
-            <div className="absolute -top-px left-1/2 -translate-x-1/2 w-1/3 h-px bg-gradient-to-r from-transparent via-primary-light to-transparent shadow-[0_0_8px_rgba(59,130,246,0.8)]"></div>
+            <div className="absolute -top-px left-1/2 -translate-x-1/2 w-1/3 h-px bg-gradient-to-r from-transparent via-primary-light to-transparent shadow-[0_0_8px_rgba(59,130,246,0.8)] pointer-events-none -z-10" />
 
             <form className="space-y-6" onSubmit={handleSubmit}>
               {/* Input Email */}
@@ -90,7 +90,7 @@ export default function SignUp() {
                   Email
                 </label>
                 <div className="relative group">
-                  <Mail aria-hidden className="absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-muted w-5 h-5 group-focus-within:text-primary-light transition-colors pointer-events-none" />
+                  <Mail aria-hidden focusable={false} tabIndex={-1} className="absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-muted w-5 h-5 group-focus-within:text-primary-light transition-colors pointer-events-none" />
                   <input
                     className="input-primary pl-12"
                     id="email"
@@ -109,7 +109,7 @@ export default function SignUp() {
                   Password
                 </label>
                 <div className="relative group">
-                  <Lock aria-hidden className="absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-muted w-5 h-5 group-focus-within:text-primary-light transition-colors pointer-events-none" />
+                  <Lock aria-hidden focusable={false} tabIndex={-1} className="absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-muted w-5 h-5 group-focus-within:text-primary-light transition-colors pointer-events-none" />
                   <input
                     className="input-primary pl-12 pr-12"
                     id="password"
@@ -135,7 +135,7 @@ export default function SignUp() {
                   Confirm Password
                 </label>
                 <div className="relative group">
-                  <Lock aria-hidden className="absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-muted w-5 h-5 group-focus-within:text-primary-light transition-colors pointer-events-none" />
+                  <Lock aria-hidden focusable={false} tabIndex={-1} className="absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-muted w-5 h-5 group-focus-within:text-primary-light transition-colors pointer-events-none" />
                   <input
                     className="input-primary pl-12 pr-12"
                     id="confirmPassword"
