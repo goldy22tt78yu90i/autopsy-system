@@ -53,6 +53,19 @@ export default function SignIn() {
     }, 500);
   };
 
+  const [oauthOpen, setOauthOpen] = useState(false)
+  const [oauthProvider, setOauthProvider] = useState<'Google' | 'Apple' | null>(null)
+
+  const openOAuth = (provider: 'Google' | 'Apple') => {
+    setOauthProvider(provider)
+    setOauthOpen(true)
+  }
+
+  const continueOAuth = () => {
+    setOauthOpen(false)
+    navigate('/dashboard')
+  }
+
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
       {/* TopAppBar - Solid */}
@@ -105,7 +118,7 @@ export default function SignIn() {
                   Email
                 </label>
                 <div className="relative">
-                  <Mail className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5" />
+                  <Mail aria-hidden focusable={false} tabIndex={-1} className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5 pointer-events-none" />
                   <input
                     id="email"
                     type="email"
@@ -135,7 +148,7 @@ export default function SignIn() {
                   </a>
                 </div>
                 <div className="relative">
-                  <Lock className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5" />
+                  <Lock aria-hidden focusable={false} tabIndex={-1} className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5 pointer-events-none" />
                   <input
                     id="password"
                     type={showPassword ? 'text' : 'password'}
@@ -195,6 +208,7 @@ export default function SignIn() {
             <div className="grid grid-cols-2 gap-3">
               <button
                 type="button"
+                onClick={() => openOAuth('Google')}
                 className="h-12 flex items-center justify-center gap-2 bg-gray-50 dark:bg-gray-700/50 border border-gray-200 dark:border-gray-600 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors group"
               >
                 <svg className="w-5 h-5" viewBox="0 0 24 24">
@@ -207,10 +221,11 @@ export default function SignIn() {
                   Google
                 </span>
               </button>
-              <button
-                type="button"
-                className="h-12 flex items-center justify-center gap-2 bg-gray-50 dark:bg-gray-700/50 border border-gray-200 dark:border-gray-600 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors group"
-              >
+                <button
+                  type="button"
+                  onClick={() => openOAuth('Apple')}
+                  className="h-12 flex items-center justify-center gap-2 bg-gray-50 dark:bg-gray-700/50 border border-gray-200 dark:border-gray-600 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors group"
+                >
                 <svg className="w-5 h-5 fill-gray-700 dark:fill-gray-300 group-hover:fill-gray-900 dark:group-hover:fill-gray-100 transition-colors" viewBox="0 0 24 24">
                   <path d="M17.05 20.28c-.96.95-2.18 1.78-3.6 1.78-1.5 0-2.1-.96-3.8-.96-1.6 0-2.3.94-3.8.94-1.3 0-2.6-.9-3.6-2.2-2.1-2.7-2.1-7.1 0-9.8 1-1.3 2.3-2.1 3.2-2.1.1.9.5 1.7 1 2.3-.5 1.4-.3 2.3-.2 3.4.4 1.7 1.3 3.4 3 3.4.5-1.4.6-2.8.5-4.2-1-1-.5-2.8-.5-2.8z" />
                 </svg>
@@ -218,6 +233,19 @@ export default function SignIn() {
                   Apple
                 </span>
               </button>
+              {oauthOpen && oauthProvider && (
+                <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+                  <div className="absolute inset-0 bg-black/40" onClick={() => setOauthOpen(false)}></div>
+                  <div className="relative glass-card rounded-2xl p-6 max-w-md w-full">
+                    <h3 className="font-headline-md mb-2">Sign in with {oauthProvider}</h3>
+                    <p className="text-sm text-on-surface-muted mb-4">This is a simulated OAuth flow for {oauthProvider}. Click continue to finish sign in.</p>
+                    <div className="flex gap-3">
+                      <button onClick={continueOAuth} className="flex-1 btn-primary py-2 px-4">Continue</button>
+                      <button onClick={() => setOauthOpen(false)} className="flex-1 btn-secondary py-2 px-4">Cancel</button>
+                    </div>
+                  </div>
+                </div>
+              )}
             </div>
 
             <p className="mt-6 text-center text-sm text-gray-500 dark:text-gray-400">

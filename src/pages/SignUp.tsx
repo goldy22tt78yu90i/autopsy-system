@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Eye, EyeOff, Mail, Lock, ArrowRight, Zap } from 'lucide-react';
+import React from 'react'
 
 export default function SignUp() {
   const navigate = useNavigate();
@@ -29,6 +30,19 @@ export default function SignUp() {
       navigate('/dashboard');
     }, 500);
   };
+
+  const [oauthOpen, setOauthOpen] = useState(false)
+  const [oauthProvider, setOauthProvider] = useState<'Google' | 'Apple' | null>(null)
+
+  const openOAuth = (provider: 'Google' | 'Apple') => {
+    setOauthProvider(provider)
+    setOauthOpen(true)
+  }
+
+  const continueOAuth = () => {
+    setOauthOpen(false)
+    navigate('/dashboard')
+  }
 
   return (
     <div className="min-h-screen bg-background text-on-background font-body-md overflow-x-hidden">
@@ -67,7 +81,7 @@ export default function SignUp() {
           {/* Signup Card */}
           <div className="glass-card p-8 rounded-xl relative">
             {/* AI Pulse Decorative Element */}
-            <div className="absolute -top-px left-1/2 -translate-x-1/2 w-1/3 h-px bg-gradient-to-r from-transparent via-primary-light to-transparent shadow-[0_0_8px_rgba(59,130,246,0.8)]"></div>
+            <div className="absolute -top-px left-1/2 -translate-x-1/2 w-1/3 h-px bg-gradient-to-r from-transparent via-primary-light to-transparent shadow-[0_0_8px_rgba(59,130,246,0.8)] pointer-events-none -z-10" />
 
             <form className="space-y-6" onSubmit={handleSubmit}>
               {/* Input Email */}
@@ -76,7 +90,7 @@ export default function SignUp() {
                   Email
                 </label>
                 <div className="relative group">
-                  <Mail className="absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-muted w-5 h-5 group-focus-within:text-primary-light transition-colors" />
+                  <Mail aria-hidden focusable={false} tabIndex={-1} className="absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-muted w-5 h-5 group-focus-within:text-primary-light transition-colors pointer-events-none" />
                   <input
                     className="input-primary pl-12"
                     id="email"
@@ -95,7 +109,7 @@ export default function SignUp() {
                   Password
                 </label>
                 <div className="relative group">
-                  <Lock className="absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-muted w-5 h-5 group-focus-within:text-primary-light transition-colors" />
+                  <Lock aria-hidden focusable={false} tabIndex={-1} className="absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-muted w-5 h-5 group-focus-within:text-primary-light transition-colors pointer-events-none" />
                   <input
                     className="input-primary pl-12 pr-12"
                     id="password"
@@ -121,7 +135,7 @@ export default function SignUp() {
                   Confirm Password
                 </label>
                 <div className="relative group">
-                  <Lock className="absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-muted w-5 h-5 group-focus-within:text-primary-light transition-colors" />
+                  <Lock aria-hidden focusable={false} tabIndex={-1} className="absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-muted w-5 h-5 group-focus-within:text-primary-light transition-colors pointer-events-none" />
                   <input
                     className="input-primary pl-12 pr-12"
                     id="confirmPassword"
@@ -153,18 +167,9 @@ export default function SignUp() {
             </form>
 
             {/* Divider */}
-            <div className="relative my-8">
-              <div className="absolute inset-0 flex items-center">
-                <div className="w-full border-t border-outline-variant/30"></div>
-              </div>
-              <div className="relative flex justify-center text-label-sm uppercase">
-                <span className="bg-surface px-4 text-on-surface-muted font-label-sm">External Authentication</span>
-              </div>
-            </div>
-
             {/* Social Signups */}
-            <div className="grid grid-cols-2 gap-4">
-              <button className="flex items-center justify-center gap-2 py-3 px-4 bg-surface-container border border-outline-variant hover:bg-surface-container-highest hover:border-primary-light/30 transition-colors rounded-lg group">
+              <div className="grid grid-cols-2 gap-4 mt-6">
+              <button onClick={() => openOAuth('Google')} className="flex items-center justify-center gap-2 py-3 px-4 bg-surface-container border border-outline-variant hover:bg-surface-container-highest hover:border-primary-light/30 transition-colors rounded-lg group">
                 <svg className="w-5 h-5" viewBox="0 0 24 24">
                   <path fill="currentColor" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" />
                   <path fill="currentColor" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" />
@@ -173,13 +178,27 @@ export default function SignUp() {
                 </svg>
                 <span className="text-label-sm text-on-surface group-hover:text-primary-light transition-colors">Google</span>
               </button>
-              <button className="flex items-center justify-center gap-2 py-3 px-4 bg-surface-container border border-outline-variant hover:bg-surface-container-highest hover:border-primary-light/30 transition-colors rounded-lg group">
+              <button onClick={() => openOAuth('Apple')} className="flex items-center justify-center gap-2 py-3 px-4 bg-surface-container border border-outline-variant hover:bg-surface-container-highest hover:border-primary-light/30 transition-colors rounded-lg group">
                 <svg className="w-5 h-5 fill-on-surface group-hover:fill-primary-light transition-colors" viewBox="0 0 24 24">
                   <path d="M17.05 20.28c-.96.95-2.18 1.78-3.6 1.78-1.5 0-2.1-.96-3.8-.96-1.6 0-2.3.94-3.8.94-1.3 0-2.6-.9-3.6-2.2-2.1-2.7-2.1-7.1 0-9.8 1-1.3 2.3-2.1 3.7-2.1 1.4 0 2.2.9 3.2.9s1.8-.9 3.3-.9c1.2 0 2.4.6 3.2 1.5-2.8 1.6-2.4 5.7.4 7.1-.5 1.2-1.3 2.3-2.4 3.3zm-3.7-13.5c-.4-1.3-1.3-2.4-2.5-2.7 0 2 1.5 3.6 2.5 3.6.1.9.5 1.7 1 2.3.4-2.8-.3-3-1.4-.2 1.7 1.3 3.4 3 3.4.5-1.4.6-2.8.5-4.2-1-1-.5-2.8-.5-2.8z" />
                 </svg>
                 <span className="text-label-sm text-on-surface group-hover:text-primary-light transition-colors">Apple</span>
               </button>
             </div>
+
+            {oauthOpen && oauthProvider && (
+              <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+                <div className="absolute inset-0 bg-black/40" onClick={() => setOauthOpen(false)}></div>
+                <div className="relative glass-card rounded-2xl p-6 max-w-md w-full">
+                  <h3 className="font-headline-md mb-2">Continue with {oauthProvider}</h3>
+                  <p className="text-sm text-on-surface-muted mb-4">This is a simulated OAuth flow for {oauthProvider}. Click continue to finish sign up.</p>
+                  <div className="flex gap-3">
+                    <button onClick={continueOAuth} className="flex-1 btn-primary py-2 px-4">Continue</button>
+                    <button onClick={() => setOauthOpen(false)} className="flex-1 btn-secondary py-2 px-4">Cancel</button>
+                  </div>
+                </div>
+              </div>
+            )}
 
             <p className="mt-8 text-center text-body-md text-on-surface-muted">Secure access only.</p>
 

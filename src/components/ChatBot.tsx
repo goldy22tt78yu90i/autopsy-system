@@ -68,7 +68,7 @@ export default function ChatBot() {
       {!isOpen && (
         <button
           onClick={() => setIsOpen(true)}
-          className="fixed bottom-6 right-6 z-40 w-14 h-14 rounded-full bg-gradient-to-r from-teal-500 dark:from-teal-500 light:from-teal-600 to-teal-600 dark:to-teal-600 light:to-teal-700 text-white shadow-lg hover:shadow-xl hover:from-teal-400 dark:hover:from-teal-400 light:hover:from-teal-500 hover:to-teal-500 dark:hover:to-teal-500 light:hover:to-teal-600 transition-all flex items-center justify-center group"
+          className="fixed bottom-24 md:bottom-6 right-6 z-40 w-14 h-14 rounded-full bg-gradient-to-r from-teal-500 dark:from-teal-500 light:from-teal-600 to-teal-600 dark:to-teal-600 light:to-teal-700 text-white shadow-lg hover:shadow-xl hover:from-teal-400 dark:hover:from-teal-400 light:hover:from-teal-500 hover:to-teal-500 dark:hover:to-teal-500 light:hover:to-teal-600 transition-all flex items-center justify-center group"
           title="Open AI Assistant"
         >
           <MessageCircle size={24} className="group-hover:scale-110 transition-transform" />
@@ -77,7 +77,7 @@ export default function ChatBot() {
 
       {/* Chat Window */}
       {isOpen && !isMinimized && (
-        <div className="fixed bottom-6 right-6 z-50 w-full max-w-md bg-slate-950/95 dark:bg-slate-950/95 light:bg-white/95 backdrop-blur-2xl rounded-2xl border border-teal-500/30 dark:border-teal-500/30 light:border-teal-600/30 shadow-2xl dark:shadow-2xl light:shadow-lg flex flex-col h-96 overflow-hidden">
+        <div className="fixed bottom-24 md:bottom-6 right-6 z-50 w-full max-w-md bg-slate-950/95 dark:bg-slate-950/95 light:bg-white/95 backdrop-blur-2xl rounded-2xl border border-teal-500/30 dark:border-teal-500/30 light:border-teal-600/30 shadow-2xl dark:shadow-2xl light:shadow-lg flex flex-col h-96 overflow-hidden">
           {/* Header */}
           <div className="bg-gradient-to-r from-slate-900 dark:from-slate-900 light:from-slate-50 to-slate-800 dark:to-slate-800 light:to-slate-100 border-b border-teal-500/20 dark:border-teal-500/20 light:border-teal-600/20 px-4 py-3 flex items-center justify-between">
             <div className="flex items-center gap-2">
@@ -163,7 +163,7 @@ export default function ChatBot() {
       {isOpen && isMinimized && (
         <button
           onClick={() => setIsMinimized(false)}
-          className="fixed bottom-6 right-6 z-40 w-auto px-4 py-2 rounded-full bg-gradient-to-r from-teal-500 dark:from-teal-500 light:from-teal-600 to-teal-600 dark:to-teal-600 light:to-teal-700 text-white shadow-lg hover:shadow-xl transition-all flex items-center gap-2 text-sm font-medium"
+          className="fixed bottom-24 md:bottom-6 right-6 z-40 w-auto px-4 py-2 rounded-full bg-gradient-to-r from-teal-500 dark:from-teal-500 light:from-teal-600 to-teal-600 dark:to-teal-600 light:to-teal-700 text-white shadow-lg hover:shadow-xl transition-all flex items-center gap-2 text-sm font-medium"
         >
           <MessageCircle size={16} />
           AI Assistant
